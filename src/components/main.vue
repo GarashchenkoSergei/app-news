@@ -1,5 +1,8 @@
 <template>
   <div class="news">
+    <div id="preloader" @click="hidePreloader">
+      <div class="preloader__text">Загрузка...</div>
+    </div>
     <div class="news__filter">
       <v-menu
         v-model="menu"
@@ -21,7 +24,7 @@
         </template>
         <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
       </v-menu>
-      <v-btn small color="white" @click="resetFilterDate">Сбросить</v-btn>
+      <v-btn small @click="resetFilterDate">Сбросить</v-btn>
     </div>
     <ul class="news__list">
       <li
@@ -67,7 +70,6 @@ export default {
     date: "",
     menu: false,
     page: 1,
-    articlesAmmountOnPage: 5,
     nextIcon: "navigate_next",
     nextIcons: "mdi-chevron-right",
     prevIcon: "navigate_before",
@@ -76,6 +78,9 @@ export default {
   computed: {
     ...mapState("news", {
       articles: state => state.articles
+    }),
+    ...mapState("settings", {
+      articlesAmmountOnPage: state => state.newsAmmount
     }),
     filteredArticles: function() {
       return this.articles.filter(article => {
@@ -94,14 +99,20 @@ export default {
       return this.filteredArticles.slice(start, end);
     }
   },
-  created() {
+  mounted() {
     this.collectNews();
   },
   methods: {
     ...mapActions("news", ["fetchNews", "renderArticle"]),
     async collectNews() {
+      let preloader = document.getElementById("preloader");
+      preloader.style.display = "flex";
+      function changeStyle(elem) {
+        elem.style.display = "none";
+      }
       try {
         await this.fetchNews();
+        setTimeout(changeStyle, 1000, preloader);
       } catch (error) {
         alert("Ошибка при загрузке новостей");
       }
@@ -111,6 +122,13 @@ export default {
     },
     resetFilterDate() {
       this.date = "";
+    },
+    hidePreloader() {
+      let preloader = document.getElementById("preloader");
+      function changeStyle(elem) {
+        elem.style.display = "none";
+      }
+      setTimeout(changeStyle, 15000, preloader);
     }
   }
 };
@@ -121,6 +139,25 @@ export default {
 
 .news {
   padding: 20px;
+  position: relative;
+}
+
+#preloader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  background: #fff;
+  padding: 15px 20px;
+}
+
+.preloader__text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: black;
 }
 
 .news__filter {

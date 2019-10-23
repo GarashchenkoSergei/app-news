@@ -27,4 +27,6 @@ const routes = [
   }
 ];
 
-export default new Router({ routes });
+export default new Router({
+  routes
+});

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :style="`font-size: ${fontSize}`">
     <v-app id="app">
       <div class="wrapper">
         <app-nav></app-nav>
@@ -12,12 +12,18 @@
 <script>
 import appNav from "./components/appNav";
 import appContent from "./components/appContent";
+import { mapState } from "vuex";
 
 export default {
   name: "app",
   components: {
     appNav,
     appContent
+  },
+  computed: {
+    ...mapState("settings", {
+      fontSize: state => state.fontSize
+    })
   }
 };
 </script>
