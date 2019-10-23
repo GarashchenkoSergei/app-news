@@ -94,8 +94,10 @@ export default {
       return Math.ceil(newsArticles / pageSize);
     },
     paginatedData() {
-      const start = (this.page - 1) * this.articlesAmmountOnPage;
-      const end = start + this.articlesAmmountOnPage;
+      const start = (this.page - 1) * parseInt(this.articlesAmmountOnPage);
+      console.log(start);
+      const end = start + parseInt(this.articlesAmmountOnPage);
+      console.log(end);
       return this.filteredArticles.slice(start, end);
     }
   },
@@ -112,7 +114,7 @@ export default {
       }
       try {
         await this.fetchNews();
-        setTimeout(changeStyle, 1000, preloader);
+        setTimeout(changeStyle, 500, preloader);
       } catch (error) {
         alert("Ошибка при загрузке новостей");
       }
