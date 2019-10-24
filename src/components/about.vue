@@ -40,9 +40,7 @@ export default {
           coords: [48.46328857390758, 135.08421449999992],
           properties: {
             hintContent: "FOGSTREAM"
-          },
-          options: {},
-          callbacks: { click: function() {} }
+          }
         }
       ]
     };

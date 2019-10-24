@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../styles/mixins.scss";
+@import "../assets/styles/mixins.scss";
 
 .nav {
   width: 23%;

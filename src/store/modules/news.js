@@ -11,17 +11,12 @@ export default {
   actions: {
     async fetchNews({ commit }) {
       try {
-        const url =
-          "https://newsapi.org/v2/top-headlines?country=us&apiKey=7ed3bea7ba80489198a4a262318ed307";
-        let req = new Request(url);
-        var result;
-        await fetch(req)
-          .then(response => response.json())
-          .then(news => {
-            result = news.articles;
-          });
-        commit("SET_ARTICLES_STATE", result);
-        return result;
+        let response = await fetch(
+          "https://newsapi.org/v2/top-headlines?country=us&apiKey=7ed3bea7ba80489198a4a262318ed307"
+        );
+        let result = await response.json();
+
+        commit("SET_ARTICLES_STATE", result.articles);
       } catch {
         alert("Ошибка при загрузке новостей");
       }

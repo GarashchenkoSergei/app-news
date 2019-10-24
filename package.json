@@ -9,7 +9,6 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "core-js": "^3.1.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vue-yandex-maps": "^0.8.18",

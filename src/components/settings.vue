@@ -49,7 +49,6 @@ export default {
       themes: ["light", "dark"],
       sizes: ["средний", "крупный"],
       news: ["5", "10"],
-      // здесь нужно еще подумать
       theme: "",
       size: "",
       newsDef: ""
@@ -80,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/mixins.scss";
+@import "../assets/styles/mixins.scss";
 
 .settings {
   padding: 20px;

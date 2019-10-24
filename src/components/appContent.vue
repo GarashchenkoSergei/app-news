@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/mixins.scss";
+@import "../assets/styles/mixins.scss";
 
 .content {
   width: 100%;

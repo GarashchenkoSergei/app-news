@@ -7,7 +7,7 @@
     </div>
     <div class="article__picture">
       <img
-        :src="`${article.urlToImage}`"
+        :src="article.urlToImage"
         class="article__picture-img"
         @click="sizeToggle"
       />
@@ -31,6 +31,7 @@ export default {
     },
     sizeToggle() {
       let picture = document.querySelector(".article__picture-img");
+
       picture.classList.toggle("article__picture-img_active");
     }
   }
@@ -38,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/mixins.scss";
+@import "../assets/styles/mixins.scss";
 
 .article {
   padding: 20px;

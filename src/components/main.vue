@@ -95,9 +95,7 @@ export default {
     },
     paginatedData() {
       const start = (this.page - 1) * parseInt(this.articlesAmmountOnPage);
-      console.log(start);
       const end = start + parseInt(this.articlesAmmountOnPage);
-      console.log(end);
       return this.filteredArticles.slice(start, end);
     }
   },
@@ -108,6 +106,7 @@ export default {
     ...mapActions("news", ["fetchNews", "renderArticle"]),
     async collectNews() {
       let preloader = document.getElementById("preloader");
+
       preloader.style.display = "flex";
       function changeStyle(elem) {
         elem.style.display = "none";
@@ -127,6 +126,7 @@ export default {
     },
     hidePreloader() {
       let preloader = document.getElementById("preloader");
+
       function changeStyle(elem) {
         elem.style.display = "none";
       }
@@ -137,7 +137,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/mixins.scss";
+@import "../assets/styles/mixins.scss";
 
 .news {
   padding: 20px;
